@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc61c0cf-4e43-49b9-85c9-14377704fa1e" name="Changes" comment="🚀 Launch project">
-      <change beforePath="$PROJECT_DIR$/../BackendListasCompra/.idea/BackendListasCompra.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../BackendListasCompra/.idea/BackendListasCompra.iml" afterDir="false" />
+    <list default="true" id="cc61c0cf-4e43-49b9-85c9-14377704fa1e" name="Changes" comment="🗃️ Edit enum">
+      <change beforePath="$PROJECT_DIR$/../BackendListasCompra/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../BackendListasCompra/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BackendListasCompra/src/Entity/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/../BackendListasCompra/src/Entity/Product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BackendListasCompra/src/Entity/ShoppingList.php" beforeDir="false" afterPath="$PROJECT_DIR$/../BackendListasCompra/src/Entity/ShoppingList.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BackendListasCompra/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/../BackendListasCompra/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BackendListasCompra/src/Enum/RoleEnum.php" beforeDir="false" afterPath="$PROJECT_DIR$/../BackendListasCompra/src/Enum/UserRoleEnum.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -337,7 +341,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "features/create-models",
+    "git-widget-placeholder": "features/update-models",
     "last_opened_file_path": "C:/Users/Maikel_rich/IdeaProjects/Restaurante",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -377,6 +381,7 @@
       <workItem from="1742314506153" duration="4613000" />
       <workItem from="1742321831524" duration="4000" />
       <workItem from="1742321854906" duration="2411000" />
+      <workItem from="1742471666796" duration="752000" />
     </task>
     <task id="LOCAL-00001" summary="🚀 Launch project">
       <option name="closed" value="true" />

@@ -16,7 +16,7 @@ class Product
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
     #[ORM\Column]
@@ -29,6 +29,10 @@ class Product
     #[ORM\ManyToOne(targetEntity: Supermarket::class)]
     #[ORM\JoinColumn(name: "supermarket_id", referencedColumnName: "id", nullable: false)]
     private ?Supermarket $supermarket = null;
+
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(name: "user_id", referencedColumnName: "id", nullable: false, onDelete: "CASCADE")]
+    private ?User $user = null;
 
     public function getId(): ?int
     {
@@ -52,7 +56,7 @@ class Product
         return $this->description;
     }
 
-    public function setDescription(string $description): static
+    public function setDescription(?string $description): static
     {
         $this->description = $description;
 
@@ -90,6 +94,17 @@ class Product
     public function setSupermarket(Supermarket $supermarket): static
     {
         $this->supermarket = $supermarket;
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): static
+    {
+        $this->user = $user;
         return $this;
     }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use App\Enum\ListStatusEnum;
 use App\Repository\ShoppingListRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ShoppingListRepository::class)]
@@ -20,6 +22,17 @@ class ShoppingList
     #[ORM\JoinColumn(name: "user_id", referencedColumnName: "id", nullable: false)]
     private ?User $user = null;
 
+    #[ORM\Column(type: 'string', enumType: ListStatusEnum::class)]
+    private ListStatusEnum $status = ListStatusEnum::IN_PROCESS;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $updatedAt = null;
+
+    public function __construct()
+    {
+        $this->updatedAt = new \DateTime(); // Se inicializa con la fecha actual
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -33,7 +46,6 @@ class ShoppingList
     public function setName(string $name): static
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -45,6 +57,28 @@ class ShoppingList
     public function setUser(User $user): static
     {
         $this->user = $user;
+        return $this;
+    }
+
+    public function getStatus(): ListStatusEnum
+    {
+        return $this->status;
+    }
+
+    public function setStatus(ListStatusEnum $status): static
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
         return $this;
     }
 }
