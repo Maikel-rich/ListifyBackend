@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Enum\RoleEnum;
+use App\Enum\UserRoleEnum;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -63,7 +63,7 @@ class User
 
     public function setRol(string $rol): static
     {
-        if (!in_array($rol, RoleEnum::getValues())) {
+        if (!in_array($rol, UserRoleEnum::getValues())) {
             throw new \InvalidArgumentException('Rol no válido.');
         }
 
