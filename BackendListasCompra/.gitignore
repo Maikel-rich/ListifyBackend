@@ -43,3 +43,9 @@
 /assets/controllers.json
 /config/packages/debug.yaml
 /.idea/commandlinetools/schemas/frameworkDescriptionVersion1.1.4.xsd
+
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
+
+/.idea/workspace.xml
