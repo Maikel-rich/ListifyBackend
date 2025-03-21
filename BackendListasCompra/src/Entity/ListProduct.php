@@ -6,6 +6,7 @@ use App\Repository\ListProductRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ListProductRepository::class)]
+#[ORM\Table(name: 'listify.list_product')]
 class ListProduct
 {
     #[ORM\Id]

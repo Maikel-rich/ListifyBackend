@@ -291,6 +291,10 @@
       <path value="$PROJECT_DIR$/../BackendListasCompra/vendor/symfony/asset-mapper" />
       <path value="$PROJECT_DIR$/../BackendListasCompra/vendor/symfony/twig-bundle" />
       <path value="$PROJECT_DIR$/../BackendListasCompra/vendor/symfony/doctrine-messenger" />
+      <path value="$PROJECT_DIR$/../BackendListasCompra/vendor/symfony/google-mailer" />
+      <path value="$PROJECT_DIR$/../BackendListasCompra/vendor/lcobucci/jwt" />
+      <path value="$PROJECT_DIR$/../BackendListasCompra/vendor/lcobucci/clock" />
+      <path value="$PROJECT_DIR$/../BackendListasCompra/vendor/lexik/jwt-authentication-bundle" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />
