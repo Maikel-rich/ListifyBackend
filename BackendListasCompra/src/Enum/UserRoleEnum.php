@@ -2,10 +2,10 @@
 
 namespace App\Enum;
 
-enum UserRoleEnum: string
+enum UserRoleEnum: int
 {
-    case ADMIN = 'admin';
-    case USER = 'user';
+    case ADMIN = 1;
+    case USER = 2;
 
     public static function getValues(): array
     {
@@ -15,3 +15,4 @@ enum UserRoleEnum: string
         ];
     }
 }
+
