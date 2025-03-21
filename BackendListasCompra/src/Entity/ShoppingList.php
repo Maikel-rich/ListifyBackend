@@ -8,6 +8,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ShoppingListRepository::class)]
+#[ORM\Table(name: 'listify.shopping_list')]
 class ShoppingList
 {
     #[ORM\Id]
@@ -22,8 +23,8 @@ class ShoppingList
     #[ORM\JoinColumn(name: "user_id", referencedColumnName: "id", nullable: false)]
     private ?User $user = null;
 
-    #[ORM\Column(type: 'string', enumType: ListStatusEnum::class)]
-    private ListStatusEnum $status = ListStatusEnum::IN_PROCESS;
+    #[ORM\Column(type: 'integer')]
+    private ?int $status = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $updatedAt = null;
@@ -60,9 +61,9 @@ class ShoppingList
         return $this;
     }
 
-    public function getStatus(): ListStatusEnum
+    public function getStatus(): ?ListStatusEnum
     {
-        return $this->status;
+        return $this->status !== null ? ListStatusEnum::tryFrom($this->status) : null;
     }
 
     public function setStatus(ListStatusEnum $status): static

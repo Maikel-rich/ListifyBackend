@@ -6,6 +6,7 @@ use App\Repository\SupermarketRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SupermarketRepository::class)]
+#[ORM\Table(name: 'listify.supermarket')]
 class Supermarket
 {
     #[ORM\Id]

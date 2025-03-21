@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
+#[ORM\Table(name: 'listify.client')]
 class Client
 {
     #[ORM\Id]
@@ -26,12 +27,11 @@ class Client
     #[ORM\Column(length: 10)]
     private ?string $dni = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $address = null;
+
     #[ORM\Column(length: 15)]
     private ?string $phone_number = null;
-
-    #[ORM\ManyToOne(targetEntity: Client::class)]
-    #[ORM\JoinColumn(name: "client_id", referencedColumnName: "id", nullable: false)]
-    private ?Client $client = null;
 
     public function getId(): ?int
     {
@@ -86,6 +86,18 @@ class Client
         return $this;
     }
 
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): static
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
     public function getPhoneNumber(): ?string
     {
         return $this->phone_number;
@@ -95,17 +107,6 @@ class Client
     {
         $this->phone_number = $phone_number;
 
-        return $this;
-    }
-
-    public function getClient(): ?Client
-    {
-        return $this->client;
-    }
-
-    public function setClient(Client $client): static
-    {
-        $this->client = $client;
         return $this;
     }
 }

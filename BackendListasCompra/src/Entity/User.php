@@ -7,8 +7,8 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: '`user`')]
-class User
+#[ORM\Table(name: 'listify.user')]
+class User implements \Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -21,11 +21,15 @@ class User
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $rol = null;
+    #[ORM\Column(type: 'integer')]
+    private ?int $rol = null;
 
     #[ORM\Column(length: 255)]
     private ?string $password = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Client $client = null;
 
     public function getId(): ?int
     {
@@ -56,21 +60,17 @@ class User
         return $this;
     }
 
-    public function getRol(): ?string
+    public function getRol(): ?UserRoleEnum
     {
-        return $this->rol;
+        return $this->rol !== null ? UserRoleEnum::tryFrom($this->rol) : null;
     }
 
-    public function setRol(string $rol): static
+    public function setRol(UserRoleEnum $rol): self
     {
-        if (!in_array($rol, UserRoleEnum::getValues())) {
-            throw new \InvalidArgumentException('Rol no válido.');
-        }
-
-        $this->rol = $rol;
-
+        $this->rol = $rol->value;
         return $this;
     }
+
 
     public function getPassword(): ?string
     {
@@ -80,6 +80,18 @@ class User
     public function setPassword(string $password): static
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(Client $client): static
+    {
+        $this->client = $client;
 
         return $this;
     }
