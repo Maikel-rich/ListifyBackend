@@ -57,7 +57,7 @@ class AuthController extends AbstractController
             'valid' => true,
             'id' => $user->getId(),
             'email' => $user->getEmail(),
-            'rol' => $user->getRol()?->value, // Se asegura de devolver el valor correcto
+            'rol' => $user->getRole()?->value, // Se asegura de devolver el valor correcto
         ]);
     }
 
@@ -83,7 +83,7 @@ class AuthController extends AbstractController
         $user = new User();
         $user->setUsername($data['username']);
         $user->setEmail($data['email']);
-        $user->setRol(UserRoleEnum::USER);
+        $user->setRole(UserRoleEnum::USER);
 
         $hashedPassword = $passwordHasher->hashPassword($user, $data['password']);
         $user->setPassword($hashedPassword);
