@@ -17,6 +17,10 @@ class Category
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(name: "user_id", referencedColumnName: "id", nullable: false, onDelete: "CASCADE")]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -31,6 +35,17 @@ class Category
     {
         $this->name = $name;
 
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): static
+    {
+        $this->user = $user;
         return $this;
     }
 }
