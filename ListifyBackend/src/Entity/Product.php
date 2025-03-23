@@ -35,6 +35,9 @@ class Product
     #[ORM\JoinColumn(name: "user_id", referencedColumnName: "id", nullable: false, onDelete: "CASCADE")]
     private ?User $user = null;
 
+    #[ORM\Column]
+    private ?Bool $is_favorite = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -106,6 +109,17 @@ class Product
     public function setUser(User $user): static
     {
         $this->user = $user;
+        return $this;
+    }
+
+    public function getIsFavorite(): ?bool
+    {
+        return $this->is_favorite;
+    }
+
+    public function setIsFavorite(bool $is_favorite): static
+    {
+        $this->is_favorite = $is_favorite;
         return $this;
     }
 }

@@ -24,7 +24,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $email = null;
 
     #[ORM\Column(type: 'integer')]
-    private ?int $rol = null;
+    private ?int $role = null;
 
     #[ORM\Column(length: 255)]
     private ?string $password = null;
@@ -60,14 +60,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getRol(): ?UserRoleEnum
+    public function getRole(): ?UserRoleEnum
     {
-        return $this->rol !== null ? UserRoleEnum::tryFrom($this->rol) : null;
+        return $this->role !== null ? UserRoleEnum::tryFrom($this->role) : null;
     }
 
-    public function setRol(UserRoleEnum $rol): self
+    public function setRole(UserRoleEnum $role): self
     {
-        $this->rol = $rol->value;
+        $this->role = $role->value;
         return $this;
     }
 
@@ -96,7 +96,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     // Métodos requeridos por UserInterface
     public function getRoles(): array
     {
-        return [$this->rol !== null ? UserRoleEnum::tryFrom($this->rol)->name : 'ROLE_USER'];
+        return [$this->role !== null ? UserRoleEnum::tryFrom($this->role)->name : 'ROLE_USER'];
     }
 
     public function eraseCredentials(): void
