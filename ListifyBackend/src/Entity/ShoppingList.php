@@ -29,11 +29,6 @@ class ShoppingList
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $updatedAt = null;
 
-    public function __construct()
-    {
-        $this->updatedAt = new \DateTime(); // Se inicializa con la fecha actual
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -63,12 +58,12 @@ class ShoppingList
 
     public function getStatus(): ?ListStatusEnum
     {
-        return $this->status !== null ? ListStatusEnum::tryFrom($this->status) : null;
+        return $this->status !== null ? ListStatusEnum::from($this->status) : null;
     }
 
     public function setStatus(ListStatusEnum $status): static
     {
-        $this->status = $status;
+        $this->status = $status->value;
         return $this;
     }
 
