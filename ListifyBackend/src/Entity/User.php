@@ -5,10 +5,12 @@ namespace App\Entity;
 use App\Enum\UserRoleEnum;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: 'listify.user')]
-class User implements \Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -44,7 +46,6 @@ class User implements \Symfony\Component\Security\Core\User\PasswordAuthenticate
     public function setUsername(string $username): static
     {
         $this->username = $username;
-
         return $this;
     }
 
@@ -56,7 +57,6 @@ class User implements \Symfony\Component\Security\Core\User\PasswordAuthenticate
     public function setEmail(string $email): static
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -71,7 +71,6 @@ class User implements \Symfony\Component\Security\Core\User\PasswordAuthenticate
         return $this;
     }
 
-
     public function getPassword(): ?string
     {
         return $this->password;
@@ -80,7 +79,6 @@ class User implements \Symfony\Component\Security\Core\User\PasswordAuthenticate
     public function setPassword(string $password): static
     {
         $this->password = $password;
-
         return $this;
     }
 
@@ -92,7 +90,22 @@ class User implements \Symfony\Component\Security\Core\User\PasswordAuthenticate
     public function setClient(Client $client): static
     {
         $this->client = $client;
-
         return $this;
+    }
+
+    // Métodos requeridos por UserInterface
+    public function getRoles(): array
+    {
+        return [$this->rol !== null ? UserRoleEnum::tryFrom($this->rol)->name : 'ROLE_USER'];
+    }
+
+    public function eraseCredentials(): void
+    {
+        // Si tienes algún dato sensible temporal, límpialo aquí.
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->username;
     }
 }
