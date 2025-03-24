@@ -7,7 +7,6 @@ use App\Entity\User;
 use App\Enum\ListStatusEnum;
 use App\Repository\ShoppingListRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 class ShoppingListService
 {
